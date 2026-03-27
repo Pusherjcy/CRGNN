@@ -135,7 +135,7 @@ def filter_tags(data, required_tags, regions, distance_threshold):
 if __name__ == "__main__":
     input_file = "../KG_file/new-york.json"
     output_file = "../KG_file/new-york_filtered_level67.json"
-    region_file = "../KG_file/NewYork7+NewJersey6_small.geojson"
+    region_file = "../KG_file/NewYork7+NewJersey6.geojson"
 
     required_tags = {
         "nodes": {"place", "highway", "railway", "public_transport", "amenity", "shop", "building", "tourism"},

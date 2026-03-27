@@ -68,20 +68,20 @@ def build_polygon_data(json_data):
 def build_kd_tree(points):
     return KDTree(points)
 
-def match_weibo_poi(foursquare_data, nodes_tree, nodes_ids, ways_tree, ways_ids, polygons, nodes, ways):
+def match_foursquare_poi(foursquare_data, nodes_tree, nodes_ids, ways_tree, ways_ids, polygons, nodes, ways):
     matches = []
     matched_items = []
 
-    for _, weibo_poi in tqdm(foursquare_data.iterrows(), total=foursquare_data.shape[0], desc="Matching POIs"):
-        user_id = weibo_poi["user_id"]
+    for _, foursquare_poi in tqdm(foursquare_data.iterrows(), total=foursquare_data.shape[0], desc="Matching POIs"):
+        user_id = foursquare_poi["user_id"]
         try:
-            poi_lat = float(weibo_poi["poi_lat"])
-            poi_lon = float(weibo_poi["poi_lon"])
+            poi_lat = float(foursquare_poi["poi_lat"])
+            poi_lon = float(foursquare_poi["poi_lon"])
         except ValueError:
             matches.append({
                 "user_id": user_id,
-                "poi_lat": weibo_poi["poi_lat"],
-                "poi_lon": weibo_poi["poi_lon"],
+                "poi_lat": foursquare_poi["poi_lat"],
+                "poi_lon": foursquare_poi["poi_lon"],
                 "matched_id": None,
                 "matched_type": None,
                 "distance": None
@@ -179,7 +179,7 @@ def main():
     polygons = build_polygon_data(json_data)
 
 
-    matches, matched_items = match_weibo_poi(
+    matches, matched_items = match_foursquare_poi(
         foursquare_data, nodes_tree, nodes["id"].values, ways_tree, way_ids, polygons, nodes=nodes, ways=ways
     )
 
@@ -187,7 +187,7 @@ def main():
     ways_filtered = ways[ways["id"].isin(matched_items)]
     relations_filtered = relations[relations["id"].isin(matched_items)]
 
-    item_relationships = pd.read_csv("../KG_file/item_relationships_with_distance.csv")
+    item_relationships = pd.read_csv("../KG_file/item_relationships.csv")
     filtered_item_relationships = item_relationships[item_relationships["id_1"].isin(matched_items) &
                                                      item_relationships["id_2"].isin(matched_items)]
 
@@ -198,7 +198,7 @@ def main():
 
     matches.to_csv("../KG_file/foursquare_newyork_poi_matches_OSM_location.csv", index=False, encoding="utf-8-sig")
 
-    print("Matching completed. Results saved to weibo_poi_matches.csv and filtered data saved.")
+    print("Matching completed. Results saved to foursquare_poi_matches.csv and filtered data saved.")
 
 if __name__ == "__main__":
     main()

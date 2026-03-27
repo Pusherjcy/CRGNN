@@ -79,7 +79,7 @@ def build_geospatial_knowledge_graph(nodes, ways, relations, item_relationships,
         if src_idx is not None and dst_idx is not None:
             dist_mat[src_idx, dst_idx] = distance
 
-    output_dir = 'E:/Dataset/FinalExperiment_NewYork/KG_file/csv_file_0528/processed/'
+    output_dir = '../processed/'
     os.makedirs(output_dir, exist_ok=True)
 
     with open(os.path.join(output_dir, 'dist_graph.pkl'), 'wb') as f:

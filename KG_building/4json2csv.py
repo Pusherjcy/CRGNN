@@ -166,6 +166,6 @@ if __name__ == '__main__':
     json_to_csv_expand(
         input_json="../KG_file/new-york_filtered_level67.json",
         output_dir="../KG_file/",
-        region_file="../KG_file/NewYork7+NewJersey6_small.geojson",
+        region_file="../KG_file/NewYork7+NewJersey6.geojson",
         weight_file="../KG_file/weight_df.csv"
     )

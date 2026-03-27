@@ -71,7 +71,7 @@ def compute_weight_matrix_method_three(heat_df, matched_df):
 
 def main():
     checkin_file = '../KG_file/dataset_TSMC2014_NYC.txt'
-    region_file = '../KG_file/NewYork7+NewJersey6_small.geojson'
+    region_file = '../KG_file/NewYork7+NewJersey6.geojson'
 
     print("Loading data...")
     checkins = load_checkins(checkin_file)
