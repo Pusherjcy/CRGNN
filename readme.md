@@ -142,14 +142,14 @@ We implement three model variants for ablation analysis:
 
 ---
 
-### (2) CRGNN w/o LLM (`wo_llm`)
+### (2) CRGNN w/o LLM
 - Removes LLM-based semantic enhancement
 - POI representations are initialized using default trainable ID embeddings
 - This variant evaluates the contribution of semantic initialization
 
 ---
 
-### (3) CRGNN w/o Cross (`wo_cross`)
+### (3) CRGNN w/o Cross
 - Removes cross-region relation modeling during graph construction
 - Only intra-region spatial relations are retained
 - LLM-based initialization remains unchanged
